@@ -454,3 +454,190 @@ main,
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =====================================================
+   ÖG - RESPONSIVE FIX
+   Corrección definitiva de alineación iPhone / Android
+===================================================== */
+
+:root {
+    --og-header-height: 56px;
+    --og-nav-height: 64px;
+}
+
+/* DOCUMENTO */
+
+html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 0;
+    margin: 0;
+
+    overflow-x: clip;
+}
+
+/* APLICACIÓN */
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 0;
+    margin: 0;
+}
+
+/* ENCABEZADO */
+
+header.ig-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: calc(var(--og-header-height) + env(safe-area-inset-top));
+
+    padding-top: env(safe-area-inset-top);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    z-index: 900;
+}
+
+.ig-logo-container {
+    display: flex !important;
+    flex: 1 1 auto;
+    align-items: center;
+    min-width: 0;
+}
+
+.ig-logo-text {
+    margin: 0;
+    line-height: 1;
+}
+
+.ig-header-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+/* CONTENIDO */
+
+main,
+#mainContent {
+    position: relative;
+
+    width: 100%;
+    max-width: 470px;
+    min-width: 0;
+
+    margin: 0 auto;
+
+    padding-top: calc(var(--og-header-height) + env(safe-area-inset-top));
+    padding-bottom: calc(var(--og-nav-height) + env(safe-area-inset-bottom));
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    box-sizing: border-box;
+}
+
+/* VISTAS */
+
+.page-view {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* NAVEGACIÓN INFERIOR */
+
+nav.bottom-nav {
+    position: fixed !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    height: calc(var(--og-nav-height) + env(safe-area-inset-bottom));
+
+    padding: 0 4px env(safe-area-inset-bottom);
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.bottom-nav .bottom-nav-item {
+    flex: 1 1 20% !important;
+
+    width: 20%;
+    min-width: 0;
+
+    height: 100%;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.bottom-nav .nav-svg-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+/* MÓVILES */
+
+@media (max-width: 480px) {
+
+    main,
+    #mainContent {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    header.ig-header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* TABLETS Y ESCRITORIO */
+
+@media (min-width: 481px) {
+
+    main,
+    #mainContent {
+        max-width: 470px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
