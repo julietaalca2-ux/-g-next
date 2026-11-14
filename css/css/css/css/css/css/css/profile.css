@@ -1,1 +1,140 @@
+/* ========================================================================= */
+/* ÖG CSS PROFILE - Perfil de Usuario, Portada, Biografía, Cuadrícula e Info  */
+/* ========================================================================= */
 
+.ig-cover {
+  width: 100%;
+  height: 115px;
+  background: var(--og-cover-gradient, linear-gradient(135deg, #1e1b4b, #312e81, #09090b));
+  overflow: hidden;
+  position: relative;
+}
+
+.ig-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ig-header-container {
+  padding: 0 16px 16px 16px;
+  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+}
+
+.ig-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -28px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.ig-avatar-wrap .story-avatar-container {
+  width: 86px;
+  height: 86px;
+  margin: 0;
+  border: 3px solid var(--og-bg, #000);
+  background: var(--og-surface-alt, #27272a);
+}
+
+.ig-stats {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  padding-top: 28px;
+  text-align: center;
+}
+
+.ig-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ig-stat-num {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ig-stat-label {
+  font-size: 12px;
+  color: var(--og-text-subtle, #a1a1aa);
+  margin-top: 2px;
+}
+
+.ig-bio-section {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.ig-display-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ig-pronouns-tag {
+  font-size: 12px;
+  color: var(--og-text-subtle, #a1a1aa);
+  font-weight: normal;
+}
+
+.ig-username-tag {
+  font-size: 13px;
+  color: var(--og-text-muted, #71717a);
+  margin: 2px 0 6px 0;
+}
+
+.ig-bio-text {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e4e4e7;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ig-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.ig-action-buttons button {
+  flex: 1;
+}
+
+.ig-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.ig-grid-item {
+  aspect-ratio: 1/1;
+  background: var(--og-surface, #121214);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--og-text-subtle, #a1a1aa);
+  border: 0.5px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  cursor: pointer;
+}
+
+.ig-grid-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
