@@ -1,12 +1,14 @@
+
 /* ========================================================================= */
-/* ÖG CSS LAYOUT - Contenedores Principales, Estructuras y Pantallas de Carga */
+/* ÖG - LAYOUT                                                               */
+/* Contenedores principales, estructuras y pantallas de carga                 */
 /* ========================================================================= */
 
 /* SPLASH SCREEN */
 #appSplashScreen {
   position: fixed;
   inset: 0;
-  background: var(--ig-primary-background, #ffffff);
+  background: var(--og-bg, #ffffff);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -36,25 +38,32 @@
   font-size: 56px;
   font-weight: 900;
   letter-spacing: -2.5px;
-  color: var(--ig-primary-text, #262626);
+  color: var(--og-text-main, #000000);
 }
 
 @keyframes splashPulse {
-  from { transform: scale(0.96); opacity: 0.85; }
-  to { transform: scale(1.04); opacity: 1; }
+  from {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+
+  to {
+    transform: scale(1.04);
+    opacity: 1;
+  }
 }
 
-/* PANTALLA DE BIENVENIDA / AUTH */
+/* PANTALLA DE BIENVENIDA / AUTENTICACIÓN */
 #authWelcomeOverlay {
   position: fixed;
   inset: 0;
-  background: var(--ig-primary-background, #ffffff);
+  background: var(--og-bg, #ffffff);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 24px calc(env(safe-area-inset-bottom) + 30px) 24px;
+  padding: 40px 24px calc(env(safe-area-inset-bottom) + 30px);
   text-align: center;
   transition: opacity 0.25s ease, visibility 0.25s ease;
   opacity: 0;
@@ -82,13 +91,13 @@
   font-size: 52px;
   font-weight: 900;
   letter-spacing: -2.5px;
-  color: var(--ig-primary-text, #262626);
+  color: var(--og-text-main, #000000);
   margin-bottom: 8px;
 }
 
 .auth-tagline {
   font-size: 15px;
-  color: var(--ig-secondary-text, #8e8e8e);
+  color: var(--og-text-subtle, #8e8e8e);
   margin-bottom: 40px;
   line-height: 1.4;
 }
@@ -119,7 +128,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px solid var(--ig-separator, #efefef);
+  border-bottom: 1px solid var(--og-border, #efefef);
   cursor: pointer;
 }
 
@@ -137,15 +146,15 @@
 
 .public-user-info strong {
   display: block;
-  color: var(--ig-primary-text, #262626);
+  color: var(--og-text-main, #000000);
   font-size: 14px;
 }
 
 .public-user-info small {
-  color: var(--ig-secondary-text, #8e8e8e);
+  color: var(--og-text-subtle, #8e8e8e);
 }
 
-/* SETTINGS DRAWER / MODALES INFERIORES */
+/* OVERLAY DE CONFIGURACIÓN */
 .settings-overlay {
   position: fixed;
   inset: 0;
@@ -163,28 +172,30 @@
   opacity: 1;
 }
 
+/* PANEL INFERIOR DE CONFIGURACIÓN */
 .settings-drawer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--ig-primary-background, #ffffff);
+  width: 100%;
+  max-width: 470px;
+  margin: 0 auto;
+  background: var(--og-surface, #ffffff);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  border-top: 1px solid var(--ig-border, #dbdbdb);
+  border-top: 1px solid var(--og-border-strong, #dbdbdb);
   z-index: 201;
-  padding: 20px 16px calc(env(safe-area-inset-bottom) + 24px) 16px;
-  max-width: 470px;
-  margin: auto;
+  padding: 20px 16px calc(env(safe-area-inset-bottom) + 24px);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .settings-handle {
   width: 36px;
   height: 4px;
-  background: var(--ig-tertiary-text, #c7c7c7);
+  background: var(--og-text-muted, #c7c7c7);
   border-radius: 2px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
 }
