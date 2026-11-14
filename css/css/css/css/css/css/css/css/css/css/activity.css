@@ -1,1 +1,45 @@
+/* ========================================================================= */
+/* ÖG CSS ACTIVITY - Sección de Notificaciones, Actividad e Historial          */
+/* ========================================================================= */
 
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  cursor: pointer;
+}
+
+.activity-item .story-avatar-container {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  margin: 0;
+}
+
+.activity-info {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--og-text-main, #f4f4f5);
+  overflow-wrap: anywhere;
+}
+
+.activity-info strong {
+  color: #white;
+}
+
+.activity-date {
+  color: var(--og-text-muted, #71717a);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.activity-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--og-text-muted, #71717a);
+  font-size: 14px;
+}
