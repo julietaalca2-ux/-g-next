@@ -105,3 +105,14 @@ nav button.active .nav-avatar-ring {
   height: 100%;
   object-fit: cover;
 }
+/* Distribución correcta de las cinco pestañas */
+.bottom-nav {
+  display: flex;
+  width: 100%;
+}
+
+.bottom-nav .bottom-nav-item {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+}
