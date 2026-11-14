@@ -6,7 +6,7 @@
 #appSplashScreen {
   position: fixed;
   inset: 0;
-  background: var(--og-bg, #000000);
+  background: var(--ig-primary-background, #ffffff);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
   font-size: 56px;
   font-weight: 900;
   letter-spacing: -2.5px;
-  color: #fff;
+  color: var(--ig-primary-text, #262626);
 }
 
 @keyframes splashPulse {
@@ -48,7 +48,7 @@
 #authWelcomeOverlay {
   position: fixed;
   inset: 0;
-  background: var(--og-bg, #000000);
+  background: var(--ig-primary-background, #ffffff);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -82,13 +82,13 @@
   font-size: 52px;
   font-weight: 900;
   letter-spacing: -2.5px;
-  color: #fff;
+  color: var(--ig-primary-text, #262626);
   margin-bottom: 8px;
 }
 
 .auth-tagline {
   font-size: 15px;
-  color: var(--og-text-subtle, #a1a1aa);
+  color: var(--ig-secondary-text, #8e8e8e);
   margin-bottom: 40px;
   line-height: 1.4;
 }
@@ -119,7 +119,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  border-bottom: 1px solid var(--ig-separator, #efefef);
   cursor: pointer;
 }
 
@@ -137,21 +137,21 @@
 
 .public-user-info strong {
   display: block;
-  color: #fff;
+  color: var(--ig-primary-text, #262626);
   font-size: 14px;
 }
 
 .public-user-info small {
-  color: var(--og-text-muted, #71717a);
+  color: var(--ig-secondary-text, #8e8e8e);
 }
 
 /* SETTINGS DRAWER / MODALES INFERIORES */
 .settings-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 200;
   display: none;
   opacity: 0;
@@ -168,23 +168,23 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(18, 18, 20, 0.88);
+  background: var(--ig-primary-background, #ffffff);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  border-top: 1px solid var(--og-border-active, rgba(255, 255, 255, 0.15));
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-top: 1px solid var(--ig-border, #dbdbdb);
   z-index: 201;
   padding: 20px 16px calc(env(safe-area-inset-bottom) + 24px) 16px;
   max-width: 470px;
   margin: auto;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .settings-handle {
   width: 36px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--ig-tertiary-text, #c7c7c7);
   border-radius: 2px;
   margin: 0 auto 20px auto;
 }
-
