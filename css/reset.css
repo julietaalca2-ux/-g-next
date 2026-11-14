@@ -1,1 +1,49 @@
+/* ========================================================================= */
+/* ÖG CSS RESET - Normalización y Reglas Base                                */
+/* ========================================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ocultar completamente las barras de desplazamiento manteniendo funcionalidad */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--og-bg, #000000);
+  color: var(--og-text-main, #f4f4f5);
+  font-family: var(--og-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
 
