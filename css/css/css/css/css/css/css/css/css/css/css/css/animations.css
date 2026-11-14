@@ -1,48 +1,103 @@
+
 /* ========================================================================= */
-/* ÖG CSS ANIMATIONS - Animaciones, Keyframes y Transiciones de Pestañas     */
+/* ÖG CSS ANIMATIONS - Animaciones, Keyframes y Transiciones                 */
 /* ========================================================================= */
 
+/* APARICIÓN DE MODALES */
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
+/* MODALES DESDE ABAJO */
 @keyframes slideUpModal {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
+/* MENÚS LATERALES */
 @keyframes slideInMenu {
-  from { transform: translateX(100%); opacity: 0.8; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-/* Animaciones de deslizamiento entre pestañas principales */
+/* NAVEGACIÓN ENTRE PESTAÑAS */
 @keyframes slideTabFromRight {
-  from { opacity: 0.35; transform: translateX(48px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0.35;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideTabFromLeft {
-  from { opacity: 0.35; transform: translateX(-48px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0.35;
+    transform: translateX(-48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-main > div.swipe-enter-right {
+/* ENTRADA DESDE LA DERECHA */
+main > div.swipe-enter-right,
+main > section.swipe-enter-right {
   animation: slideTabFromRight 0.26s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
   will-change: transform, opacity;
 }
 
-main > div.swipe-enter-left {
+/* ENTRADA DESDE LA IZQUIERDA */
+main > div.swipe-enter-left,
+main > section.swipe-enter-left {
   animation: slideTabFromLeft 0.26s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
   will-change: transform, opacity;
 }
 
+/* INDICADOR DE CARGA */
 @keyframes pulseLoader {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .activity-empty {
   animation: pulseLoader 1.5s ease-in-out infinite;
+}
+
+/* ACCESIBILIDAD: REDUCIR MOVIMIENTO */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
