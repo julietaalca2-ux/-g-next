@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     appState.myProfile = await fetchUserProfile(session.user.id);
   }
 
-  // 3. Vincular navegación inferior (Bottom Navigation) con carga condicional de vistas
+  // 3. Vincular navegación inferior (Bottom Navigation)
   document.querySelectorAll('.bottom-nav-item').forEach(nav => {
     nav.addEventListener('click', (e) => {
       const tab = nav.dataset.tab;
@@ -70,6 +70,20 @@ async function initAppView() {
 function handleTabNavigationLoad(tabId) {
   if (tabId === 'explore') {
     loadExploreView();
+  } else if (tabId === 'create') {
+    if (!appState.currentUser) {
+      alert('Debes iniciar sesión para crear una publicación.');
+      switchTab('home');
+      return;
+    }
+    loadCreatePostView();
+  } else if (tabId === 'activity') {
+    if (!appState.currentUser) {
+      alert('Debes iniciar sesión para ver tu actividad.');
+      switchTab('home');
+      return;
+    }
+    loadActivityView();
   } else if (tabId === 'profile') {
     if (appState.currentUser) {
       loadUserProfileView(appState.currentUser.id);
@@ -85,13 +99,143 @@ async function loadExploreView() {
   if (!exploreContainer) return;
 
   try {
-    // Reutilizar o cargar posts para la cuadrícula de exploración
     const posts = appState.cachedFeedPosts || await fetchPostsPage(0);
     renderExploreContainer(exploreContainer, posts, (post) => {
       console.log('Post seleccionado en explorar:', post.id);
     });
   } catch (err) {
     console.error('Error al cargar la vista de explorar:', err);
+  }
+}
+
+function loadCreatePostView() {
+  const createContainer = document.getElementById('createContainer');
+  if (!createContainer) return;
+
+  createContainer.innerHTML = `
+    <div style="padding: 20px; max-width: 500px; margin: 0 auto;">
+      <h2 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Nueva publicación</h2>
+      <div id="createFormError" style="color: red; font-size: 13px; margin-bottom: 10px; display: none;"></div>
+      
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Seleccionar imagen</label>
+        <input type="file" id="postImageInput" accept="image/*" style="width: 100%; padding: 8px; border: 1px solid var(--og-border, #dbdbdb); border-radius: 8px;">
+      </div>
+
+      <div id="imagePreviewContainer" style="margin-bottom: 16px; display: none; text-align: center;">
+        <img id="postImagePreview" src="" alt="Vista previa" style="max-height: 250px; border-radius: 8px; object-fit: cover;">
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Descripción</label>
+        <textarea id="postContentInput" placeholder="Escribe algo sobre tu publicación..." style="width: 100%; height: 100px; padding: 12px; border: 1px solid var(--og-border, #dbdbdb); border-radius: 8px; font-size: 14px; outline: none; resize: none;"></textarea>
+      </div>
+
+      <button id="submitPostBtn" style="width: 100%; padding: 12px; background: var(--og-primary, #0095f6); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Compartir publicación</button>
+    </div>
+  `;
+
+  let selectedFile = null;
+  const imageInput = document.getElementById('postImageInput');
+  const previewContainer = document.getElementById('imagePreviewContainer');
+  const previewImg = document.getElementById('postImagePreview');
+  const submitBtn = document.getElementById('submitPostBtn');
+  const errorDiv = document.getElementById('createFormError');
+
+  imageInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      errorDiv.style.display = 'none';
+      const compressedBlob = await compressImage(file, 1200, 0.8);
+      selectedFile = compressedBlob;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        previewImg.src = event.target.result;
+        previewContainer.style.display = 'block';
+      };
+      reader.readAsDataURL(compressedBlob);
+    } catch (err) {
+      console.error('Error al comprimir imagen:', err);
+      errorDiv.textContent = 'No se pudo procesar la imagen seleccionada.';
+      errorDiv.style.display = 'block';
+    }
+  });
+
+  submitBtn.addEventListener('click', async () => {
+    if (!selectedFile) {
+      errorDiv.textContent = 'Por favor, selecciona una imagen.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    const content = document.getElementById('postContentInput').value.trim();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Publicando...';
+
+    try {
+      const fileName = `post_${Date.now()}.jpg`;
+      const imageUrl = await uploadMediaFile(selectedFile, fileName, 'posts');
+      await createNewPost(appState.currentUser.id, imageUrl, content);
+
+      alert('¡Publicación creada con éxito!');
+      switchTab('home');
+      window.location.reload();
+    } catch (err) {
+      console.error('Error al crear publicación:', err);
+      errorDiv.textContent = 'Error al publicar. Inténtalo de nuevo.';
+      errorDiv.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Compartir publicación';
+    }
+  });
+}
+
+async function loadActivityView() {
+  const activityContainer = document.getElementById('activityContainer');
+  if (!activityContainer) return;
+  activityContainer.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--og-text-muted);">Cargando actividad...</div>';
+
+  try {
+    const activities = await fetchUserActivityData(appState.currentUser.id);
+    activityContainer.innerHTML = '';
+
+    if (!activities || activities.length === 0) {
+      activityContainer.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--og-text-muted);">No tienes actividad reciente.</div>';
+      return;
+    }
+
+    activities.forEach(item => {
+      const profile = item.profiles || { username: 'usuario', avatar_url: null };
+      const el = renderActivityItemElement(item, profile, item.type || 'like', (act, type) => {
+        console.log('Actividad seleccionada:', act);
+      });
+      activityContainer.append(el);
+    });
+
+    setLastSeenActivityTimestamp(appState.currentUser.id, new Date().toISOString());
+  } catch (err) {
+    console.error('Error al cargar la actividad:', err);
+    activityContainer.innerHTML = '<div style="padding: 40px; text-align: center; color: red;">Error al cargar la actividad.</div>';
+  }
+}
+
+async function loadUserProfileView(userId) {
+  switchTab('profile');
+  const profileContainer = document.getElementById('profilePageContainer');
+  if (!profileContainer) return;
+
+  try {
+    const profile = await fetchUserProfile(userId);
+    const counts = await fetchUserCounts(userId);
+    const isMy = appState.currentUser?.id === userId;
+
+    profileContainer.innerHTML = renderProfileHeaderMarkup(profile, counts, isMy, false);
+  } catch (err) {
+    console.error('Error al cargar perfil:', err);
+    profileContainer.innerHTML = '<div style="padding: 40px; text-align: center; color: red;">Error al cargar el perfil.</div>';
   }
 }
 
@@ -124,18 +268,6 @@ function renderFeed(posts) {
     });
     feedContainer.append(card);
   });
-}
-
-async function loadUserProfileView(userId) {
-  switchTab('profile');
-  const profileContainer = document.getElementById('profilePageContainer');
-  if (!profileContainer) return;
-
-  const profile = await fetchUserProfile(userId);
-  const counts = await fetchUserCounts(userId);
-  const isMy = appState.currentUser?.id === userId;
-
-  profileContainer.innerHTML = renderProfileHeaderMarkup(profile, counts, isMy, false);
 }
 
 function setupGlobalEventListeners() {
