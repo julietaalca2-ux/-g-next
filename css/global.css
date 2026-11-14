@@ -350,3 +350,54 @@ button {
     transition-duration: 0.01ms;
   }
 }
+/* AJUSTES DE ALINEACIÓN ÖG */
+
+html,
+body {
+    overflow-x: clip;
+}
+
+#app {
+    width: 100%;
+    min-height: 100dvh;
+}
+
+header.ig-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: env(safe-area-inset-top);
+}
+
+.ig-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.ig-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.ig-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-svg-icon {
+    width: 28px;
+    height: 28px;
+}
