@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ÖG - Red Social</title>
+    <title>ÖG</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#000000">
 
@@ -26,6 +26,22 @@
 <body>
     <!-- Contenedor Principal de la App -->
     <div id="app">
+        
+        <!-- Cabecera Superior Estilo Instagram -->
+        <header class="ig-header">
+            <div class="ig-logo-container">
+                <h1 class="ig-logo-text">ÖG</h1>
+            </div>
+            <div class="ig-header-actions">
+                <button class="ig-icon-btn" aria-label="Notificaciones">
+                    <svg aria-label="Notificaciones" class="ig-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 5.859-5.197 8.43-1.03 1.04-2.11 2.03-3.23 2.95-.12.1-.28.1-.4 0-1.12-.92-2.2-1.91-3.23-2.95-2.545-2.571-5.197-5.358-5.197-8.43a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.28-.588 1.12-1.763a4.21 4.21 0 0 1 3.675-1.941z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                </button>
+                <button class="ig-icon-btn" aria-label="Mensajes y Chat">
+                    <svg aria-label="Mensajes" class="ig-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="15.782"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.219 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
+                </button>
+            </div>
+        </header>
+
         <!-- Vistas / Páginas controladas por JavaScript -->
         <main id="mainContent">
             <!-- Vista Inicio / Feed -->
@@ -55,22 +71,22 @@
             </section>
         </main>
 
-        <!-- Barra de Navegación Inferior -->
+        <!-- Barra de Navegación Inferior Estilo Instagram -->
         <nav class="bottom-nav">
             <button class="bottom-nav-item active" data-tab="home" aria-label="Inicio">
-                <span class="nav-icon">🏠</span>
+                <svg aria-label="Inicio" class="nav-svg-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997h0a2.997 2.997 0 0 1 2.997 2.997v3.454c0 .345.28.625.625.625H18.5a2 2 0 0 0 2-2V11.23a1 1 0 0 0-.37-.78l-7.5-6.08a1.05 1.05 0 0 0-1.26 0l-7.5 6.08a1 1 0 0 0-.37.78v7.389a2 2 0 0 0 2 2h3.278a.625.625 0 0 0 .625-.625V16.545Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button class="bottom-nav-item" data-tab="explore" aria-label="Explorar">
-                <span class="nav-icon">🔍</span>
+            <button class="bottom-nav-item" data-tab="explore" aria-label="Búsqueda y Explorar">
+                <svg aria-label="Búsqueda" class="nav-svg-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="16.511" x2="22" y1="16.511" y2="22"></line></svg>
             </button>
-            <button class="bottom-nav-item" data-tab="create" aria-label="Crear">
-                <span class="nav-icon">➕</span>
+            <button class="bottom-nav-item" data-tab="create" aria-label="Crear publicación">
+                <svg aria-label="Nueva publicación" class="nav-svg-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M2 12h20M12 2v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button class="bottom-nav-item" data-tab="activity" aria-label="Actividad">
-                <span class="nav-icon">❤️</span>
+            <button class="bottom-nav-item" data-tab="activity" aria-label="Favoritos / Actividad">
+                <svg aria-label="Notificaciones" class="nav-svg-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 5.859-5.197 8.43-1.03 1.04-2.11 2.03-3.23 2.95-.12.1-.28.1-.4 0-1.12-.92-2.2-1.91-3.23-2.95-2.545-2.571-5.197-5.358-5.197-8.43a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.28-.588 1.12-1.763a4.21 4.21 0 0 1 3.675-1.941z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button class="bottom-nav-item" data-tab="profile" aria-label="Perfil">
-                <span class="nav-icon">👤</span>
+            <button class="bottom-nav-item" data-tab="profile" aria-label="Perfil de usuario">
+                <svg aria-label="Perfil" class="nav-svg-icon" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M12 11.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.418 0-8 2.239-8 5v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1c0-2.761-3.582-5-8-5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
         </nav>
     </div>
