@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ÖG - Red Social</title>
+  
+  <!-- Estilos Modulares CSS -->
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/navigation.css">
+  <link rel="stylesheet" href="./css/feed.css">
+  <link rel="stylesheet" href="./css/stories.css">
+  <link rel="stylesheet" href="./css/profile.css">
+  <link rel="stylesheet" href="./css/explore.css">
+  <link rel="stylesheet" href="./css/chat.css">
+  <link rel="stylesheet" href="./css/activity.css">
+  <link rel="stylesheet" href="./css/modals.css">
+  <link rel="stylesheet" href="./css/animations.css">
+
+  <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+  <!-- Contenedor Principal de la Aplicación -->
+  <main id="appMain">
+    <!-- Pestaña de Inicio (Home) -->
+    <div id="homePage" class="page-view active" style="display: flex;">
+      <div id="storiesContainer" class="stories-container"></div>
+      <div id="feedContainer" class="feed-container"></div>
+    </div>
+
+    <!-- Pestaña de Explorar -->
+    <div id="explorePage" class="page-view" style="display: none;">
+      <div id="exploreContainer"></div>
+    </div>
+
+    <!-- Pestaña de Crear Publicación -->
+    <div id="createPage" class="page-view" style="display: none;">
+      <div id="createContainer"></div>
+    </div>
+
+    <!-- Pestaña de Actividad -->
+    <div id="activityPage" class="page-view" style="display: none;">
+      <div id="activityContainer"></div>
+    </div>
+
+    <!-- Pestaña de Perfil -->
+    <div id="profilePage" class="page-view" style="display: none;">
+      <div id="profilePageContainer"></div>
+    </div>
+  </main>
+
+  <!-- Barra de Navegación Inferior -->
+  <nav class="bottom-nav">
+    <button class="bottom-nav-item active" data-tab="home">🏠</button>
+    <button class="bottom-nav-item" data-tab="explore">🔍</button>
+    <button class="bottom-nav-item" data-tab="create">➕</button>
+    <button class="bottom-nav-item" data-tab="activity">❤️</button>
+    <button class="bottom-nav-item" data-tab="profile">👤</button>
+  </nav>
+
+  <!-- Script Principal Modular ES -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
 
