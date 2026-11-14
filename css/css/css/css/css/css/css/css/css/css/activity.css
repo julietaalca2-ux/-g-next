@@ -1,5 +1,6 @@
+
 /* ========================================================================= */
-/* ÖG CSS ACTIVITY - Sección de Notificaciones, Actividad e Historial          */
+/* ÖG CSS ACTIVITY - Notificaciones, Actividad e Historial                   */
 /* ========================================================================= */
 
 .activity-item {
@@ -7,8 +8,13 @@
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  border-bottom: 1px solid var(--og-border, #efefef);
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.activity-item:active {
+  background: var(--og-surface-alt, #f5f5f5);
 }
 
 .activity-item .story-avatar-container {
@@ -16,6 +22,7 @@
   height: 42px;
   min-width: 42px;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .activity-info {
@@ -23,16 +30,17 @@
   min-width: 0;
   font-size: 13px;
   line-height: 1.4;
-  color: var(--og-text-main, #f4f4f5);
+  color: var(--og-text-main, #262626);
   overflow-wrap: anywhere;
 }
 
 .activity-info strong {
-  color: #white;
+  color: var(--og-text-main, #000000);
+  font-weight: 600;
 }
 
 .activity-date {
-  color: var(--og-text-muted, #71717a);
+  color: var(--og-text-muted, #8e8e8e);
   font-size: 11px;
   margin-top: 3px;
 }
@@ -40,6 +48,6 @@
 .activity-empty {
   text-align: center;
   padding: 40px 20px;
-  color: var(--og-text-muted, #71717a);
+  color: var(--og-text-muted, #8e8e8e);
   font-size: 14px;
 }
