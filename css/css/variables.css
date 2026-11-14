@@ -1,1 +1,47 @@
+/* ========================================================================= */
+/* ÖG CSS VARIABLES - Design Tokens & Theme Tokens                           */
+/* ========================================================================= */
+
+:root {
+  /* Colores base y superficies */
+  --og-bg: #000000;
+  --og-surface: #121214;
+  --og-card-bg: #18181b;
+  --og-surface-alt: #27272a;
+  
+  /* Textos y tipografía */
+  --og-text-main: #f4f4f5;
+  --og-text-secondary: #d4d4d8;
+  --og-text-muted: #71717a;
+  --og-text-subtle: #a1a1aa;
+  
+  /* Colores de acento y estado */
+  --og-primary: #3b82f6;
+  --og-primary-hover: #2563eb;
+  --og-danger: #ef4444;
+  --og-success: #22c55e;
+  
+  /* Bordes y divisores */
+  --og-border-subtle: rgba(255, 255, 255, 0.05);
+  --og-border: rgba(255, 255, 255, 0.08);
+  --og-border-strong: rgba(255, 255, 255, 0.12);
+  --og-border-active: rgba(255, 255, 255, 0.2);
+
+  /* Fondos translúcidos y modales */
+  --og-overlay-dark: rgba(0, 0, 0, 0.8);
+  --og-overlay-blur: rgba(0, 0, 0, 0.85);
+  --og-header-bg: rgba(0, 0, 0, 0.88);
+  --og-nav-bg: rgba(0, 0, 0, 0.85);
+
+  /* Familia tipográfica oficial */
+  --og-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Gradientes oficiales de Ög / Instagram style */
+  --og-story-gradient: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  --og-cover-gradient: linear-gradient(135deg, #1e1b4b, #312e81, #09090b);
+
+  /* Transiciones estándar */
+  --og-transition-standard: 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+  --og-transition-fast: 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
 
