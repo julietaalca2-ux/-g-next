@@ -1,5 +1,7 @@
+
 /* ========================================================================= */
-/* ÖG CSS HEADER - Cabecera Fija Estilo Instagram con Soporte iPhone Safe Area */
+/* ÖG - HEADER                                                               */
+/* Cabecera fija estilo Instagram + iPhone Safe Area                         */
 /* ========================================================================= */
 
 header {
@@ -12,8 +14,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
-  background: var(--og-header-bg, rgba(0, 0, 0, 0.88));
+  border-bottom: 1px solid var(--og-border, #efefef);
+  background: var(--og-header-bg, rgba(255, 255, 255, 0.96));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 90;
@@ -42,7 +44,7 @@ header {
   font-size: 24px;
   font-weight: 900;
   letter-spacing: -1.5px;
-  color: #fff;
+  color: var(--og-text-main, #000000);
 }
 
 .header-right-slot {
@@ -53,37 +55,41 @@ header {
   justify-content: flex-end;
 }
 
+/* ICONOS DEL HEADER */
 .icon {
   background: none;
   border: 0;
-  color: #fff;
+  color: var(--og-text-main, #000000);
   padding: 8px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .icon svg {
   width: 24px;
   height: 24px;
+  stroke: currentColor;
 }
 
-/* Indicador rojo de notificaciones en el corazón */
+/* INDICADOR DE NOTIFICACIONES */
 .header-notif-badge {
   position: absolute;
   top: 6px;
   right: 6px;
   width: 9px;
   height: 9px;
-  background: var(--og-danger, #ef4444);
+  background: var(--og-danger, #ed4956);
   border-radius: 50%;
-  border: 2px solid #000;
+  border: 2px solid var(--og-bg, #ffffff);
   display: none;
   pointer-events: none;
   z-index: 2;
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.7);
+  box-shadow: 0 0 5px rgba(237, 73, 86, 0.3);
 }
 
 .header-notif-badge.active {
@@ -91,3 +97,7 @@ header {
   animation: fadeInScale 0.2s ease;
 }
 
+/* INTERACCIÓN */
+.icon:active {
+  opacity: 0.65;
+}
