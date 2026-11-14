@@ -1,79 +1,52 @@
+
 /* ========================================================================= */
-/* ÖG MAIN ENTRY POINT - ES MODULES (BLINDADO CONTRA PANTALLAS NEGRAS)       */
+/* ÖG MAIN ENTRY POINT - ES MODULES                                         */
 /* ========================================================================= */
 
-import { AppState } from './core/state.js';
 import { initRouter } from './core/router.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         console.log('🚀 Iniciando ÖG...');
 
-        // 1. Inicializar la navegación inferior (cambio de pestañas)
-        initNavigationTabs();
-
-        // 2. Intentar inicializar el enrutador si existe
-        if (typeof initRouter === 'function') {
-            initRouter();
-        }
+        // Inicializar navegación principal
+        initRouter();
 
         console.log('✅ ÖG inicializado correctamente.');
+
     } catch (error) {
         console.error('❌ Error crítico al iniciar ÖG:', error);
         showErrorBanner(error.message);
     }
 });
 
-/**
- * Controla el cambio de pestañas de la barra inferior estilo Instagram
- */
-function initNavigationTabs() {
-    const navButtons = document.querySelectorAll('.bottom-nav-item');
-    const views = document.querySelectorAll('.page-view');
-
-    if (!navButtons.length || !views.length) {
-        console.warn('⚠️ No se encontraron elementos de navegación o vistas en el DOM.');
-        return;
-    }
-
-    navButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetTab = button.getAttribute('data-tab');
-            if (!targetTab) return;
-
-            // Actualizar botón activo en la barra inferior
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Mostrar la vista correspondiente y ocultar las demás
-            views.forEach(view => {
-                // Compara con el ID de la vista (ej: homePage, explorePage, etc.)
-                if (view.id.toLowerCase().includes(targetTab.toLowerCase())) {
-                    view.style.display = 'block';
-                    view.classList.add('active');
-                } else {
-                    view.style.display = 'none';
-                    view.classList.remove('active');
-                }
-            });
-        });
-    });
-}
-
-/**
- * Muestra un aviso visual en pantalla si ocurre un error grave de ejecución
- */
+/* Aviso de errores críticos */
 function showErrorBanner(message) {
     const mainContent = document.getElementById('mainContent');
-    if (mainContent) {
-        mainContent.innerHTML = `
-            <div style="padding: 30px; color: #ff4d4d; text-align: center; font-family: -apple-system, sans-serif;">
-                <h3 style="margin-bottom: 10px;">⚠️ Error al iniciar la app</h3>
-                <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">${message}</p>
-                <button onclick="window.location.reload()" style="padding: 10px 20px; background: #fff; color: #000; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-                    Reintentar
-                </button>
-            </div>
-        `;
-    }
+
+    if (!mainContent) return;
+
+    const container = document.createElement('div');
+    container.style.cssText =
+        'padding:30px;text-align:center;color:#262626;font-family:-apple-system,sans-serif;';
+
+    const title = document.createElement('h3');
+    title.textContent = '⚠️ Error al iniciar ÖG';
+
+    const description = document.createElement('p');
+    description.textContent = message;
+    description.style.fontSize = '14px';
+
+    const retryButton = document.createElement('button');
+    retryButton.textContent = 'Reintentar';
+    retryButton.style.cssText =
+        'padding:10px 20px;background:#0095f6;color:white;border:0;border-radius:8px;font-weight:bold;';
+
+    retryButton.addEventListener('click', () => {
+        window.location.reload();
+    });
+
+    container.append(title, description, retryButton);
+
+    mainContent.replaceChildren(container);
 }
