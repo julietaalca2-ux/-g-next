@@ -1,53 +1,116 @@
+
 /* ========================================================================= */
-/* ÖG ROUTER - Navegación entre Pestañas, Transiciones y Historial Móvil    */
+/* ÖG ROUTER - Navegación principal y transiciones                           */
 /* ========================================================================= */
 
 const tabsOrder = ['home', 'explore', 'create', 'activity', 'profile'];
 
+let routerInitialized = false;
+
 export function switchTab(targetTabId, direction = 'auto') {
-  const currentActive = document.querySelector('main > div.active, main > div:not([style*="display: none"])');
-  const targetElement = document.getElementById(targetTabId + 'Page');
+    if (!tabsOrder.includes(targetTabId)) return;
 
-  if (!targetElement) return;
+    const targetElement = document.getElementById(`${targetTabId}Page`);
+    if (!targetElement) return;
 
-  const currentIndex = tabsOrder.indexOf(currentActive?.id ? currentActive.id.replace('Page', '') : 'home');
-  const targetIndex = tabsOrder.indexOf(targetTabId);
+    const currentActive = document.querySelector('main .page-view.active');
 
-  let animClass = '';
-  if (direction === 'right' || (direction === 'auto' && targetIndex > currentIndex)) {
-    animClass = 'swipe-enter-right';
-  } else if (direction === 'left' || (direction === 'auto' && targetIndex < currentIndex)) {
-    animClass = 'swipe-enter-left';
-  }
+    const currentTabId = currentActive?.id?.replace('Page', '') || 'home';
 
-  // Ocultar todas las pestañas principales
-  tabsOrder.forEach(t => {
-    const el = document.getElementById(t + 'Page');
-    if (el) {
-      el.style.display = 'none';
-      el.classList.remove('active', 'swipe-enter-right', 'swipe-enter-left');
+    const currentIndex = tabsOrder.indexOf(currentTabId);
+    const targetIndex = tabsOrder.indexOf(targetTabId);
+
+    let animationClass = '';
+
+    if (
+        direction === 'right' ||
+        (direction === 'auto' && targetIndex > currentIndex)
+    ) {
+        animationClass = 'swipe-enter-right';
+    } else if (
+        direction === 'left' ||
+        (direction === 'auto' && targetIndex < currentIndex)
+    ) {
+        animationClass = 'swipe-enter-left';
     }
-  });
 
-  // Mostrar la pestaña seleccionada
-  targetElement.style.display = 'flex';
-  targetElement.classList.add('active');
+    // Ocultar todas las vistas principales
+    tabsOrder.forEach(tab => {
+        const page = document.getElementById(`${tab}Page`);
 
-  if (animClass) {
-    targetElement.classList.add(animClass);
-    setTimeout(() => {
-      targetElement.classList.remove(animClass);
-    }, 280);
-  }
+        if (page) {
+            page.style.display = 'none';
+            page.classList.remove(
+                'active',
+                'swipe-enter-right',
+                'swipe-enter-left'
+            );
+        }
+    });
 
-  // Actualizar barra de navegación inferior
-  document.querySelectorAll('.bottom-nav-item').forEach(nav => {
-    nav.classList.remove('active');
-    if (nav.dataset.tab === targetTabId) {
-      nav.classList.add('active');
+    // Mostrar la vista seleccionada
+    targetElement.style.display = 'block';
+    targetElement.classList.add('active');
+
+    // Aplicar transición
+    if (animationClass) {
+        targetElement.classList.add(animationClass);
+
+        targetElement.addEventListener('animationend', () => {
+            targetElement.classList.remove(animationClass);
+        }, { once: true });
+
+        // Respaldo por si el evento de animación no se dispara
+        setTimeout(() => {
+            targetElement.classList.remove(animationClass);
+        }, 400);
     }
-  });
 
-  window.scrollTo({ top: 0, behavior: 'instant' });
+    // Actualizar navegación inferior
+    document.querySelectorAll('.bottom-nav-item').forEach(button => {
+        const isActive = button.dataset.tab === targetTabId;
+
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+    });
 }
 
+/* Inicialización del router */
+export function initRouter() {
+    if (routerInitialized) return;
+
+    routerInitialized = true;
+
+    const navButtons = document.querySelectorAll('.bottom-nav-item');
+
+    if (!navButtons.length) {
+        console.warn('ÖG Router: no se encontró la navegación.');
+        return;
+    }
+
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.dataset.tab;
+
+            if (targetTab) {
+                switchTab(targetTab);
+            }
+        });
+    });
+
+    // Restaurar la vista inicial
+    const initialPage =
+        document.querySelector('main .page-view.active') ||
+        document.getElementById('homePage');
+
+    const initialTab = initialPage?.id?.replace('Page', '') || 'home';
+
+    switchTab(initialTab, 'none');
+
+    console.log('✅ ÖG Router iniciado.');
+}
