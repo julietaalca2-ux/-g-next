@@ -17,6 +17,7 @@ import { createPostCardElement } from './components/feedComponent.js';
 import { renderProfileHeaderMarkup } from './components/profileComponent.js';
 import { renderConversationItem, renderChatBubbleElement } from './components/chatComponent.js';
 import { renderActivityItemElement } from './components/activityComponent.js';
+import { renderExploreContainer } from './components/exploreComponent.js';
 import { getOrCreateVisitorId } from './utils/images.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -32,17 +33,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     appState.myProfile = await fetchUserProfile(session.user.id);
   }
 
-  // 3. Vincular navegación inferior (Bottom Navigation)
+  // 3. Vincular navegación inferior (Bottom Navigation) con carga condicional de vistas
   document.querySelectorAll('.bottom-nav-item').forEach(nav => {
     nav.addEventListener('click', (e) => {
       const tab = nav.dataset.tab;
       if (tab) {
         switchTab(tab);
+        handleTabNavigationLoad(tab);
       }
     });
   });
 
-  // 4. Cargar datos iniciales del feed y pestañas
+  // 4. Cargar datos iniciales del feed
   await initAppView();
 
   // Registrar Service Worker para PWA
@@ -54,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function initAppView() {
-  // Cargar feed inicial si el usuario está autenticado o en modo invitado
   try {
     const posts = await fetchPostsPage(0);
     appState.cachedFeedPosts = posts;
@@ -63,8 +64,35 @@ async function initAppView() {
     console.error('Error al cargar feed inicial:', e);
   }
 
-  // Configurar eventos globales de botones y formularios
   setupGlobalEventListeners();
+}
+
+function handleTabNavigationLoad(tabId) {
+  if (tabId === 'explore') {
+    loadExploreView();
+  } else if (tabId === 'profile') {
+    if (appState.currentUser) {
+      loadUserProfileView(appState.currentUser.id);
+    } else {
+      alert('Debes iniciar sesión para ver tu perfil.');
+      switchTab('home');
+    }
+  }
+}
+
+async function loadExploreView() {
+  const exploreContainer = document.getElementById('exploreContainer');
+  if (!exploreContainer) return;
+
+  try {
+    // Reutilizar o cargar posts para la cuadrícula de exploración
+    const posts = appState.cachedFeedPosts || await fetchPostsPage(0);
+    renderExploreContainer(exploreContainer, posts, (post) => {
+      console.log('Post seleccionado en explorar:', post.id);
+    });
+  } catch (err) {
+    console.error('Error al cargar la vista de explorar:', err);
+  }
 }
 
 function renderFeed(posts) {
@@ -88,7 +116,6 @@ function renderFeed(posts) {
         }
       },
       onCommentClick: (postObj) => {
-        // Abrir modal de comentarios o desplegar sección
         console.log('Abrir comentarios para post:', postObj.id);
       },
       onProfileClick: (userId) => {
@@ -112,7 +139,6 @@ async function loadUserProfileView(userId) {
 }
 
 function setupGlobalEventListeners() {
-  // Manejadores adicionales de UI, modales y botones de acción rápida
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
@@ -121,4 +147,3 @@ function setupGlobalEventListeners() {
     });
   }
 }
-
