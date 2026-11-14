@@ -199,3 +199,38 @@
   border-radius: 2px;
   margin: 0 auto 20px;
 }
+
+/* AJUSTES DE ADAPTACIÓN PARA MÓVILES */
+
+#appSplashScreen,
+#authWelcomeOverlay,
+.settings-overlay {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.settings-drawer {
+  box-sizing: border-box;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+#authWelcomeOverlay {
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.auth-brand-container,
+.auth-forms-container {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.public-user {
+  min-width: 0;
+}
+
+.public-user-info {
+  flex: 1;
+}
