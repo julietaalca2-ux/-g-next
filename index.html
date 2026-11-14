@@ -7,7 +7,7 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#000000">
 
-    <!-- ÖG Modular CSS Stylesheets (Rutas relativas estables) -->
+    <!-- ÖG Modular CSS Stylesheets -->
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/global.css">
@@ -24,26 +24,38 @@
     <link rel="stylesheet" href="./css/animations.css">
 </head>
 <body>
+    <!-- Contenedor Principal de la App -->
     <div id="app">
+        <!-- Vistas / Páginas controladas por JavaScript -->
         <main id="mainContent">
+            <!-- Vista Inicio / Feed -->
             <section id="homePage" class="page-view active">
                 <div id="storiesContainer"></div>
                 <div id="feedContainer"></div>
             </section>
+
+            <!-- Vista Explorar -->
             <section id="explorePage" class="page-view" style="display: none;">
                 <div id="exploreContainer"></div>
             </section>
+
+            <!-- Vista Crear -->
             <section id="createPage" class="page-view" style="display: none;">
                 <div id="createContainer"></div>
             </section>
+
+            <!-- Vista Actividad -->
             <section id="activityPage" class="page-view" style="display: none;">
                 <div id="activityContainer"></div>
             </section>
+
+            <!-- Vista Perfil -->
             <section id="profilePage" class="page-view" style="display: none;">
                 <div id="profilePageContainer"></div>
             </section>
         </main>
 
+        <!-- Barra de Navegación Inferior -->
         <nav class="bottom-nav">
             <button class="bottom-nav-item active" data-tab="home" aria-label="Inicio">
                 <span class="nav-icon">🏠</span>
@@ -63,14 +75,7 @@
         </nav>
     </div>
 
-    <!-- Capturador temporal de errores para iPhone -->
-    <script>
-      window.onerror = function(msg, url, line) {
-        alert("⚠️ Error en ÖG:\n" + msg + "\nLínea: " + line);
-        return true;
-      };
-    </script>
-
+    <!-- Punto de entrada principal (ES Module) -->
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
