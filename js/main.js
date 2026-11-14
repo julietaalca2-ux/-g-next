@@ -1,3 +1,12 @@
+window.onerror = function(msg, url, line) {
+    document.body.innerHTML = `<div style="color: #ff3333; background: #000; padding: 30px; font-family: monospace; z-index: 999999; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: auto;">
+        <h3>⚠️ Error Crítico en ÖG:</h3>
+        <p>${msg}</p>
+        <p><b>Línea:</b> ${line}</p>
+        <p><b>Archivo:</b> ${url}</p>
+    </div>`;
+};
+
 /* ========================================================================= */
 /* ÖG MAIN - Punto de Entrada Principal, Inicialización y Control de Sesión  */
 /* ========================================================================= */
