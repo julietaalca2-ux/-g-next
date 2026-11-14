@@ -63,6 +63,14 @@
         </nav>
     </div>
 
+    <!-- Capturador temporal de errores para iPhone -->
+    <script>
+      window.onerror = function(msg, url, line) {
+        alert("⚠️ Error en ÖG:\n" + msg + "\nLínea: " + line);
+        return true;
+      };
+    </script>
+
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
