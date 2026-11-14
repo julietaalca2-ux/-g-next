@@ -1,8 +1,8 @@
 /* ========================================================================= */
-/* ÖG SERVICE WORKER - Caché Estático para PWA                               */
+/* ÖG SERVICE WORKER - Caché Estático para PWA (v3)                          */
 /* ========================================================================= */
 
-const CACHE_NAME = 'og-cache-v2';
+const CACHE_NAME = 'og-cache-v3';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
@@ -68,7 +68,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  event.respondW(
+  event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request).catch(() => {
         if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
@@ -78,4 +78,3 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
-
