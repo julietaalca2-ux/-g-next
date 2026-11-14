@@ -7,55 +7,43 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#000000">
 
-    <!-- ÖG Modular CSS Stylesheets (Rutas absolutas corregidas para Vercel) -->
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/navigation.css">
-    <link rel="stylesheet" href="/css/feed.css">
-    <link rel="stylesheet" href="/css/stories.css">
-    <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/explore.css">
-    <link rel="stylesheet" href="/css/chat.css">
-    <link rel="stylesheet" href="/css/activity.css">
-    <link rel="stylesheet" href="/css/modals.css">
-    <link rel="stylesheet" href="/css/animations.css">
+    <!-- ÖG Modular CSS Stylesheets (Rutas relativas estables) -->
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/navigation.css">
+    <link rel="stylesheet" href="./css/feed.css">
+    <link rel="stylesheet" href="./css/stories.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <link rel="stylesheet" href="./css/explore.css">
+    <link rel="stylesheet" href="./css/chat.css">
+    <link rel="stylesheet" href="./css/activity.css">
+    <link rel="stylesheet" href="./css/modals.css">
+    <link rel="stylesheet" href="./css/animations.css">
 </head>
 <body>
-    <!-- Contenedor Principal de la App -->
     <div id="app">
-        <!-- Vistas / Páginas (controladas por router.js y main.js) -->
         <main id="mainContent">
-            <!-- Vista Home / Feed -->
             <section id="homePage" class="page-view active">
                 <div id="storiesContainer"></div>
                 <div id="feedContainer"></div>
             </section>
-
-            <!-- Vista Explorar -->
             <section id="explorePage" class="page-view" style="display: none;">
                 <div id="exploreContainer"></div>
             </section>
-
-            <!-- Vista Crear -->
             <section id="createPage" class="page-view" style="display: none;">
                 <div id="createContainer"></div>
             </section>
-
-            <!-- Vista Actividad -->
             <section id="activityPage" class="page-view" style="display: none;">
                 <div id="activityContainer"></div>
             </section>
-
-            <!-- Vista Perfil -->
             <section id="profilePage" class="page-view" style="display: none;">
                 <div id="profilePageContainer"></div>
             </section>
         </main>
 
-        <!-- Barra de Navegación Inferior (Bottom Navigation) -->
         <nav class="bottom-nav">
             <button class="bottom-nav-item active" data-tab="home" aria-label="Inicio">
                 <span class="nav-icon">🏠</span>
@@ -75,7 +63,6 @@
         </nav>
     </div>
 
-    <!-- Punto de entrada principal (ES Module) -->
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
