@@ -1,5 +1,7 @@
+
 /* ========================================================================= */
-/* ÖG CSS NAVIGATION - Barra de Navegación Inferior y Elementos de Ruta      */
+/* ÖG - NAVIGATION                                                           */
+/* Barra de navegación inferior estilo Instagram                             */
 /* ========================================================================= */
 
 nav {
@@ -8,22 +10,22 @@ nav {
   left: 0;
   right: 0;
   height: calc(64px + env(safe-area-inset-bottom));
-  background: var(--og-nav-bg, rgba(0, 0, 0, 0.85));
+  background: var(--og-nav-bg, rgba(255, 255, 255, 0.98));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid var(--og-border-strong, rgba(255, 255, 255, 0.1));
+  border-top: 1px solid var(--og-border-strong, #efefef);
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 100;
   padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.04);
 }
 
 nav button {
   background: none;
   border: 0;
-  color: var(--og-text-muted, #71717a);
+  color: var(--og-text-muted, #8e8e8e);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,6 +35,8 @@ nav button {
   cursor: pointer;
   transition: color 0.15s ease, transform 0.1s ease;
   position: relative;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 nav button:active {
@@ -42,52 +46,57 @@ nav button:active {
 nav button svg {
   width: 25px;
   height: 25px;
+  stroke: currentColor;
 }
 
 nav small {
   display: none;
 }
 
+/* SECCIÓN ACTIVA */
 nav button.active {
-  color: #fff;
+  color: var(--og-text-main, #000000);
 }
 
 nav button.active svg {
   stroke-width: 2.4;
 }
 
+/* NOTIFICACIÓN DE MENSAJES */
 .nav-msg-badge {
   position: absolute;
   top: 10px;
   right: calc(50% - 16px);
   width: 9px;
   height: 9px;
-  background: var(--og-danger, #ef4444);
+  background: var(--og-danger, #ed4956);
   border-radius: 50%;
-  border: 2px solid #000;
+  border: 2px solid var(--og-bg, #ffffff);
   display: none;
+  pointer-events: none;
 }
 
 .nav-msg-badge.active {
   display: block;
 }
 
+/* AVATAR DE PERFIL */
 .nav-avatar-ring {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1.5px solid var(--og-text-muted, #71717a);
+  border: 1.5px solid var(--og-text-muted, #8e8e8e);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--og-card-bg, #18181b);
+  background: var(--og-card-bg, #ffffff);
   transition: border-color 0.15s ease;
   position: relative;
 }
 
 nav button.active .nav-avatar-ring {
-  border-color: #fff;
+  border-color: var(--og-text-main, #000000);
   border-width: 2px;
 }
 
