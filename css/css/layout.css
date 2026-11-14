@@ -1,1 +1,190 @@
+/* ========================================================================= */
+/* ÖG CSS LAYOUT - Contenedores Principales, Estructuras y Pantallas de Carga */
+/* ========================================================================= */
+
+/* SPLASH SCREEN */
+#appSplashScreen {
+  position: fixed;
+  inset: 0;
+  background: var(--og-bg, #000000);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  will-change: opacity;
+}
+
+#appSplashScreen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: splashPulse 1.2s ease-in-out infinite alternate;
+}
+
+.splash-logo {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  color: #fff;
+}
+
+@keyframes splashPulse {
+  from { transform: scale(0.96); opacity: 0.85; }
+  to { transform: scale(1.04); opacity: 1; }
+}
+
+/* PANTALLA DE BIENVENIDA / AUTH */
+#authWelcomeOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--og-bg, #000000);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 24px calc(env(safe-area-inset-bottom) + 30px) 24px;
+  text-align: center;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#authWelcomeOverlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.auth-brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-logo {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.auth-tagline {
+  font-size: 15px;
+  color: var(--og-text-subtle, #a1a1aa);
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.auth-forms-container {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-panel {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeInScale 0.2s ease;
+}
+
+.auth-panel.active {
+  display: flex;
+}
+
+/* COMPONENTES DE USUARIO Y SEGUIDORES */
+.public-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  cursor: pointer;
+}
+
+.public-user .story-avatar-container {
+  margin: 0;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.public-user-info {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.public-user-info strong {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+}
+
+.public-user-info small {
+  color: var(--og-text-muted, #71717a);
+}
+
+/* SETTINGS DRAWER / MODALES INFERIORES */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.settings-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+.settings-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 20, 0.88);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-top: 1px solid var(--og-border-active, rgba(255, 255, 255, 0.15));
+  z-index: 201;
+  padding: 20px 16px calc(env(safe-area-inset-bottom) + 24px) 16px;
+  max-width: 470px;
+  margin: auto;
+}
+
+.settings-handle {
+  width: 36px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin: 0 auto 20px auto;
+}
 
