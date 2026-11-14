@@ -1,119 +1,178 @@
 
-/* ========================================================================= */
-/* ÖG GLOBAL STYLES - Tema Blanco / Instagram                                */
-/* Alineación general y adaptación móvil                                    */
-/* ========================================================================= */
+/* =========================================================================
+   ÖG GLOBAL STYLES
+   Tema blanco estilo Instagram
+   Diseño responsive para iPhone, Android y escritorio
+   ========================================================================= */
 
-/* 1. ESTRUCTURA GENERAL */
+
+/* 1. CONFIGURACIÓN GENERAL */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 html {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding-top: calc(56px + env(safe-area-inset-top));
-  padding-bottom: calc(74px + env(safe-area-inset-bottom));
-  padding-left: 0;
-  padding-right: 0;
-  overflow-x: hidden;
-  background: var(--og-bg, #ffffff);
-  color: var(--og-text-main, #000000);
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0;
+    padding: 0;
+
+    padding-top: calc(56px + env(safe-area-inset-top));
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+
+    overflow-x: hidden;
+
+    background: var(--og-bg, #ffffff);
+    color: var(--og-text-main, #000000);
+
+    font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    -webkit-font-smoothing: antialiased;
 }
+
 
 /* 2. CONTENEDOR PRINCIPAL */
 
 #app {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: clip;
 }
 
-/* 3. ENCABEZADO SUPERIOR */
+
+/* 3. HEADER SUPERIOR */
 
 header.ig-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  margin: 0;
-  box-sizing: border-box;
-  z-index: 90;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin: 0;
+
+    box-sizing: border-box;
+
+    z-index: 90;
 }
+
 
 /* 4. CONTENIDO PRINCIPAL */
 
 main,
 #mainContent {
-  display: block;
-  position: relative;
-  width: 100%;
-  max-width: 470px;
-  min-width: 0;
-  min-height: calc(100vh - 130px);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 0;
-  padding-right: 0;
-  box-sizing: border-box;
-  z-index: 1;
+    display: block;
+
+    position: relative;
+
+    width: 100%;
+    max-width: 470px;
+    min-width: 0;
+
+    min-height: calc(100vh - 130px);
+    min-height: calc(100dvh - 130px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 0;
+    padding-right: 0;
+
+    box-sizing: border-box;
+
+    z-index: 1;
 }
+
 
 /* 5. VISTAS PRINCIPALES */
 
 .page-view {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
+    position: relative;
 
-.page-view > * {
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
+    display: none;
 
-/* Mantener el control de visibilidad en JavaScript */
-.page-view[style*="display: none"] {
-  display: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    box-sizing: border-box;
 }
 
 .page-view.active {
-  display: block;
+    display: block;
 }
+
+.page-view > * {
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+}
+
+/* Respetar las vistas ocultas por JavaScript */
+
+.page-view[style*="display: none"] {
+    display: none !important;
+}
+
 
 /* 6. CONTENEDORES INTERNOS */
 
 main > div {
-  padding: 16px;
-  box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+
+    padding: 16px;
+
+    box-sizing: border-box;
 }
 
 main > div.active {
-  display: block;
+    display: block;
 }
+
+/* Vistas que no necesitan padding */
 
 #feed.active,
 #profile.active,
@@ -131,273 +190,267 @@ main > div.active {
 #menuHelpPage.active,
 #menuAccountsPage.active,
 #explore.active {
-  padding: 0 !important;
+    padding: 0 !important;
 }
+
 
 /* 7. CAMPOS DE ENTRADA */
 
 textarea,
 .field {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  background: #ffffff;
-  color: #262626;
-  border: 1px solid var(--og-border-strong, #dbdbdb);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font: inherit;
-  margin-top: 6px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  box-shadow: none;
-  box-sizing: border-box;
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin-top: 6px;
+
+    padding: 12px 14px;
+
+    background: #ffffff;
+    color: #262626;
+
+    border: 1px solid var(--og-border-strong, #dbdbdb);
+    border-radius: 8px;
+
+    font: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    box-shadow: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 textarea:focus,
 .field:focus {
-  border-color: var(--og-primary, #0095f6);
-  background: #ffffff;
+    border-color: var(--og-primary, #0095f6);
+    background: #ffffff;
 }
 
 textarea {
-  height: 110px;
-  resize: none;
+    height: 110px;
+    resize: none;
 }
 
 textarea::placeholder,
 .field::placeholder {
-  color: #8e8e8e;
+    color: #8e8e8e;
 }
+
 
 /* 8. BOTONES PRINCIPALES */
 
 .primary {
-  width: 100%;
-  max-width: 100%;
-  padding: 12px 14px;
-  background: var(--og-primary, #0095f6);
-  color: #ffffff;
-  border: 0;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  box-shadow: none;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+
+    padding: 12px 14px;
+
+    background: var(--og-primary, #0095f6);
+    color: #ffffff;
+
+    border: 0;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
 }
 
 .primary:active {
-  background: var(--og-primary-hover, #1877f2);
+    background: var(--og-primary-hover, #1877f2);
 }
+
 
 /* 9. BOTONES SECUNDARIOS */
 
 .secondary {
-  background: #f5f5f5;
-  border: 1px solid #dbdbdb;
-  color: #262626;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-sizing: border-box;
+    padding: 10px 14px;
+
+    background: #f5f5f5;
+    color: #262626;
+
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
 .secondary:active {
-  background: #eeeeee;
+    background: #eeeeee;
 }
+
 
 /* 10. BOTONES DE PELIGRO */
 
 .danger-btn {
-  width: 100%;
-  padding: 12px 14px;
-  background: #fff0f0;
-  color: var(--og-danger, #ed4956);
-  border: 1px solid #f5c6cb;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+
+    padding: 12px 14px;
+
+    background: #fff0f0;
+    color: var(--og-danger, #ed4956);
+
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
 .danger-btn:active {
-  background: #ffe0e0;
+    background: #ffe0e0;
 }
+
 
 /* 11. UTILIDADES TIPOGRÁFICAS */
 
 .status {
-  font-size: 13px;
-  color: var(--og-primary, #0095f6);
-  margin: 10px 0;
-  overflow-wrap: anywhere;
-  text-align: center;
+    margin: 10px 0;
+
+    color: var(--og-primary, #0095f6);
+
+    font-size: 13px;
+    text-align: center;
+
+    overflow-wrap: anywhere;
 }
 
 .muted {
-  color: var(--og-text-muted, #737373);
-  font-size: 13px;
+    color: var(--og-text-muted, #737373);
+    font-size: 13px;
 }
 
 .hidden-file {
-  display: none !important;
+    display: none !important;
 }
 
-/* 12. NAVEGACIÓN INFERIOR */
 
-nav.bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0;
-  box-sizing: border-box;
-  z-index: 100;
-}
-
-.bottom-nav .bottom-nav-item {
-  flex: 1 1 0;
-  width: auto;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-/* 13. TRANSICIONES E INTERACCIONES */
-
-button,
-.story,
-.post-action-btn,
-.chat-action-pill,
-.menu-list-btn,
-.explore-grid-item,
-.ig-grid-item {
-  transition:
-    transform 0.15s cubic-bezier(0.1, 0.9, 0.2, 1),
-    opacity 0.15s ease,
-    background-color 0.15s ease;
-}
-
-button:active,
-.post-action-btn:active,
-.story:active {
-  transform: scale(0.96);
-}
-
-/* 14. PREVENCIÓN DE DESBORDAMIENTOS */
+/* 12. IMÁGENES Y ELEMENTOS MULTIMEDIA */
 
 img,
-video,
-svg {
-  max-width: 100%;
+video {
+    max-width: 100%;
 }
+
+img {
+    height: auto;
+}
+
+svg {
+    max-width: 100%;
+}
+
+
+/* 13. CAMPOS Y CONTROLES */
 
 input,
 textarea,
 select,
 button {
-  max-width: 100%;
+    max-width: 100%;
+
+    font-family: inherit;
 }
 
-/* 15. ADAPTACIÓN A PANTALLAS MÓVILES */
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* 14. PREVENCIÓN DE DESBORDAMIENTOS */
+
+main,
+.page-view,
+#mainContent,
+#app {
+    min-width: 0;
+}
+
+.page-view img,
+.page-view video {
+    max-width: 100%;
+}
+
+
+/* 15. ADAPTACIÓN MÓVIL */
 
 @media (max-width: 480px) {
-  main,
-  #mainContent {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
 
-  .page-view {
-    width: 100%;
-    max-width: 100%;
-  }
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+    }
 
-  header.ig-header,
-  nav.bottom-nav {
-    width: 100%;
-    left: 0;
-    right: 0;
-  }
+    #app {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    main,
+    #mainContent {
+        width: 100%;
+        max-width: 100%;
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .page-view {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    header.ig-header,
+    nav.bottom-nav {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
 }
 
-/* 16. RESPETO POR LA CONFIGURACIÓN DE MOVIMIENTO */
+
+/* 16. TABLETS Y ESCRITORIO */
+
+@media (min-width: 481px) {
+
+    main,
+    #mainContent {
+        width: 100%;
+        max-width: 470px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* 17. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO */
 
 @media (prefers-reduced-motion: reduce) {
-  button,
-  .story,
-  .post-action-btn,
-  .chat-action-pill,
-  .menu-list-btn,
-  .explore-grid-item,
-  .ig-grid-item {
-    transition-duration: 0.01ms;
-  }
-}
-/* AJUSTES DE ALINEACIÓN ÖG */
 
-html,
-body {
-    overflow-x: clip;
-}
-
-#app {
-    width: 100%;
-    min-height: 100dvh;
-}
-
-header.ig-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: env(safe-area-inset-top);
-}
-
-.ig-logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.ig-header-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 16px;
-}
-
-.ig-icon-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-nav.bottom-nav {
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
-.bottom-nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav-svg-icon {
-    width: 28px;
-    height: 28px;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
