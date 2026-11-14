@@ -1,1 +1,175 @@
+/* ========================================================================= */
+/* ÖG CSS FEED - Estilos del Muro de Publicaciones y Tarjetas de Post        */
+/* ========================================================================= */
 
+.post {
+  background: var(--og-bg, #000);
+  border-bottom: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  margin-bottom: 8px;
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}
+
+.posthead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.posthead .story-avatar-container {
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+.time {
+  color: var(--og-text-muted, #71717a);
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.postimage {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  background: var(--og-surface, #121214);
+}
+
+.posttext {
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 0 16px 8px 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #e4e4e7;
+}
+
+.post-actions {
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px 6px 16px;
+  align-items: center;
+}
+
+.post-action-btn {
+  border: 0;
+  background: none;
+  color: var(--og-text-main, #f4f4f5);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s ease;
+}
+
+.post-action-btn:active {
+  transform: scale(0.85);
+}
+
+.post-action-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+}
+
+.post-action-btn.liked svg {
+  fill: var(--og-danger, #ef4444);
+  stroke: var(--og-danger, #ef4444);
+}
+
+.post-action-btn.saved svg {
+  fill: var(--og-primary, #3b82f6);
+  stroke: var(--og-primary, #3b82f6);
+}
+
+.likes-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  padding: 0 16px 6px 16px;
+}
+
+.post-comments-section {
+  padding: 0 16px 12px 16px;
+  font-size: 13px;
+}
+
+.comment-item {
+  margin-bottom: 4px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.comment-user {
+  font-weight: 600;
+  color: #fff;
+  margin-right: 6px;
+}
+
+.comment-text {
+  color: #d4d4d8;
+}
+
+.view-more-comments {
+  color: var(--og-text-muted, #71717a);
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.comment-input-box {
+  display: none;
+  align-items: center;
+  border-top: 1px solid var(--og-border, rgba(255, 255, 255, 0.08));
+  padding: 8px 16px;
+}
+
+.comment-input-box.open {
+  display: flex;
+}
+
+.comment-input {
+  flex: 1;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+}
+
+.comment-input::placeholder {
+  color: var(--og-text-muted, #71717a);
+}
+
+.comment-send-btn {
+  background: none;
+  border: 0;
+  color: var(--og-primary, #3b82f6);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#posts:empty:after {
+  content: "Todavía no hay publicaciones. ¡Sé el primero!";
+  display: block;
+  text-align: center;
+  color: var(--og-text-muted, #71717a);
+  padding: 60px 20px;
+  font-size: 14px;
+}
